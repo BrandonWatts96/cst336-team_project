@@ -1,0 +1,9 @@
+[06-Feb-2017 19:36:35 UTC] PHP Parse error:  syntax error, unexpected 'imagerectangle' (T_STRING) in /home/ubuntu/workspace/Labs/Lab2/Index.php on line 11
+[06-Feb-2017 19:39:00 UTC] PHP Warning:  imagerectangle() expects parameter 1 to be resource, null given in /home/ubuntu/workspace/Labs/Lab2/Index.php on line 11
+[06-Feb-2017 19:39:00 UTC] PHP Stack trace:
+[06-Feb-2017 19:39:00 UTC] PHP   1. {main}() /home/ubuntu/workspace/Labs/Lab2/Index.php:0
+[06-Feb-2017 19:39:00 UTC] PHP   2. imagerectangle() /home/ubuntu/workspace/Labs/Lab2/Index.php:11
+[06-Feb-2017 19:44:42 UTC] PHP Warning:  imagerectangle() expects parameter 1 to be resource, null given in /home/ubuntu/workspace/Labs/Lab2/Index.php on line 13
+[06-Feb-2017 19:44:42 UTC] PHP Stack trace:
+[06-Feb-2017 19:44:42 UTC] PHP   1. {main}() /home/ubuntu/workspace/Labs/Lab2/Index.php:0
+[06-Feb-2017 19:44:42 UTC] PHP   2. imagerectangle() /home/ubuntu/workspace/Labs/Lab2/Index.php:13
