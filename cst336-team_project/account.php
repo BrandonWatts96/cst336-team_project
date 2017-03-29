@@ -16,7 +16,6 @@
     <meta name="author" content="">
 
     <title>Flower Shop</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,13 +42,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
+ <li>
+                        <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="cart.php">Cart</a>
                     </li>
                     <li>
+                        <a href="account.php">Account</a>
+                        </li>
                         <a href="#">Contact</a>
                     </li>
                 </ul>
@@ -120,8 +121,7 @@
   <div class="col-md-4">
     <label class="checkbox-inline" for="checkboxes-0">
       <input type="checkbox" name="checkboxes" id="checkboxes-0" value="">
-      ""
-    </label>
+</label>
   </div>
 </div>
 
