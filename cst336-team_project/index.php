@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<!---- php 
-    require_once('connection.php');
-    session_start();
-?> ---->
-
-=======
->>>>>>> 29e2353281709e560da1ce8a2399f2ebb7543481
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,11 +156,15 @@
 
     function populateList()
     {
+
         require_once('database.php');
         session_start();
         $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
         $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart']=array();
+        }
         $sql = "SELECT * FROM product";
         if ($_GET['maxprice'] != NULL)
         {
@@ -249,13 +245,15 @@
                 echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
                     echo '<div class="caption">';
                         echo '<h3>'. $row["name"]. '</h3>';
+                        echo '<p>'.$row["productId"].'</p>';
                         echo '<p>'.$row["description"].'</p>
                         <p>
-                        <a href="#" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
+                        <a href="add_to_cart.php?id='.$row["productId"].'" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>';
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
         }
     }
+
 ?>
