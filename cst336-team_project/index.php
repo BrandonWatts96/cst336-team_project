@@ -249,9 +249,14 @@
                 echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
                     echo '<div class="caption">';
                         echo '<h3>'. $row["name"]. '</h3>';
-                        echo '<p>'.$row["description"].'</p>
+                        echo '<div class="collapse" id="collapseExample">';
+                        echo '<section class="card card-block">'.$row["description"].'</section>
+                        </div>
                         <p>
-                        <a href="#" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
+                        <a href="#" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a>
+                        <button class="btn btn-default" type="button" data-parent="#wrap" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                        More Info
+                        </button>
                         </p>';
                     echo '</div>';
                 echo '</div>';
