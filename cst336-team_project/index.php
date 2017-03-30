@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="cart.php">Cart</a>
@@ -133,7 +133,10 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <center><p>Copyright &copy; CST 336 - Team Project - Flower Shop</p></center>
+                    <center>
+                        <a href="https://docs.google.com/presentation/u/1/d/1bkYpRsHVhn3ic_CkIcRgds0ttgq45RjL1UwC9RP7fZ8/htmlpresent">Link to User Story</a>
+                        <br>
+                        <p>Copyright &copy; CST 336 - Team Project - Flower Shop</p></center>
                 </div>
             </div>
         </footer>
