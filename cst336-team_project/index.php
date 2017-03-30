@@ -244,7 +244,7 @@
         $stmt->execute();
         
         while ($row = $stmt->fetch()) {
-            echo '<div class="col-xs-6 col-md-4 hero-feature">';
+            echo '<div class="col-md-4 hero-feature">';
                 echo '<div class="thumbnail">';
                 echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
                     echo '<div class="caption">';
