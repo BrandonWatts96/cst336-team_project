@@ -2,30 +2,30 @@
 
     function populateList()
     {
-    require_once('database.php');
-    session_start();
-    $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
-    $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    $sql = "SELECT * FROM product";
-    
-    $stmt = $dbConn->prepare($sql);
-    $stmt->execute();
-    
-    while ($row = $stmt->fetch()) {
-        echo '<div class="col-md-3 col-sm-6 hero-feature">';
-            echo '<div class="thumbnail">';
-            echo '<img src="product_img/'. $row["image"] .'" alt="">';
-                echo '<div class="caption">';
-                    echo '<h3>'. $row["name"]. '</h3>';
-                    echo '<p>'.$row["description"].'</p>
-                    <p>
-                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>';
+        require_once('database.php');
+        session_start();
+        $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
+        $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "SELECT * FROM product";
+        
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute();
+        
+        while ($row = $stmt->fetch()) {
+            echo '<div class="col-md-3 col-sm-6 hero-feature">';
+                echo '<div class="thumbnail">';
+                echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
+                    echo '<div class="caption">';
+                        echo '<h3>'. $row["name"]. '</h3>';
+                        echo '<p>'.$row["description"].'</p>
+                        <p>
+                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>';
+                    echo '</div>';
                 echo '</div>';
             echo '</div>';
-        echo '</div>';
-    }
+        }
     }
 ?>
 
@@ -100,13 +100,35 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Latest Features</h3>
+                <h3>Products</h3>
             </div>
         </div>
         <!-- /.row -->
 
         <!-- Page Features -->
-        
+        <div class="Form">
+            <h3>Limit Search</h3>
+            <form>
+                Sort by:
+                Price <input type="radio" name="sortBy" value="price" checked>
+                Name <input type="radio" name="sortBy" value="name">
+                Ascending <input type="radio" name="ascDes" value="asc" checked> 
+                Desending <input type="radio" name="ascDes" value="des"><br>
+                Max Price 
+                <input type="number" name="maxprice" min="0" max="100" value="100.00">
+                Flowers 
+                <input  type="checkbox" class="formCheckbox" name="flowers">
+                Bouquets
+                <input  type="checkbox" class="formCheckbox" name="bouquets">
+                Plants
+                <input  type="checkbox" class="formCheckbox" name="plants">
+                Other Products
+                <input  type="checkbox" class="formCheckbox" name="other"><br>
+                Search: 
+                <input type="text" name="searchString">
+                <input type="submit" value="Search">
+            </form>
+        </div>
 
         <div class="row text-center">
         <?=populateList()?>
