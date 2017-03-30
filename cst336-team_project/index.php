@@ -272,7 +272,7 @@
                         echo '<h3>'. $row["name"]. '</h3>';
                         echo '<p>'.$row["description"].'</p>
                         <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        <a href="#" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>';
                     echo '</div>';
                 echo '</div>';
