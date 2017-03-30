@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="cart.php">Cart</a>
@@ -63,8 +63,6 @@
         <header class="jumbotron hero-spacer">
             <h1>Flower Shop</h1>
             <p>Welcome to the CSUMB Flower Shop created and run by students for students.</p>
-            <p><a class="btn btn-primary btn-large">Check it out!</a>
-            </p>
         </header>
 
         <hr>
@@ -72,13 +70,13 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Products</h3>
+                <center><h1>Our Products</h1></center>
             </div>
         </div>
         <!-- /.row -->
 
         <!-- Page Features -->
-        <div id="searchform">
+      <center><div id="searchform">
             <h3>Search</h3>
             <form>
                 Sort by:<br>
@@ -108,6 +106,7 @@
                 <input type="submit" value="Search">
             </form>
         </div>
+        </center> 
 
         <div class="row text-center">
         <?=populateList()?>
@@ -134,7 +133,10 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <center><p>Copyright &copy; CST 336 - Team Project - Flower Shop</p></center>
+                    <center>
+                        <a href="https://docs.google.com/presentation/u/1/d/1bkYpRsHVhn3ic_CkIcRgds0ttgq45RjL1UwC9RP7fZ8/htmlpresent">Link to User Story</a>
+                        <br>
+                        <p>Copyright &copy; CST 336 - Team Project - Flower Shop</p></center>
                 </div>
             </div>
         </footer>
@@ -240,15 +242,20 @@
         $stmt->execute();
         
         while ($row = $stmt->fetch()) {
-            echo '<div class="col-xs-6 col-md-4 hero-feature">';
+            echo '<div class="col-md-4 hero-feature">';
                 echo '<div class="thumbnail">';
                 echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
                     echo '<div class="caption">';
                         echo '<h3>'. $row["name"]. '</h3>';
-                        echo '<p>'.$row["productId"].'</p>';
-                        echo '<p>'.$row["description"].'</p>
+
+                        echo '<div class="collapse" id="collapseExample">';
+                        echo '<section class="card card-block">'.$row["description"].'</section>
+                        </div>
                         <p>
-                        <a href="add_to_cart.php?id='.$row["productId"].'" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
+                        <a href="add_to_cart.php?id='.$row["productId"].'" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> 
+                        <button class="btn btn-default" type="button" data-parent="#wrap" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="collapseExample">
+                        More Info
+                        </button>
                         </p>';
                     echo '</div>';
                 echo '</div>';
