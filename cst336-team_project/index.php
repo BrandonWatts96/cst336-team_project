@@ -1,7 +1,7 @@
-<?php 
+<!---- php 
     require_once('connection.php');
     session_start();
-?>
+?> ---->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +43,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="cart.php">Cart</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="account.php">Account</a>
                     </li>
                 </ul>
             </div>
