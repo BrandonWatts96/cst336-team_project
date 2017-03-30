@@ -1,5 +1,13 @@
 <?php 
     require_once('database.php');
+    session_start();
+    $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
+    $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT * FROM products";
+    
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute();
+    
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +104,7 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="forget_me_not.jpg" alt="">
+                    <img src="product_img/forget.jpg" alt="">
                     <div class="caption">
                         <h3>Forget Me Not</h3>
                         <p>Growing a pot of these beautiful blue flowers will leave you remembering them forever.</p>
