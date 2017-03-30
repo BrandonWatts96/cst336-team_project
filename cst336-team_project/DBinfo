@@ -1,11 +1,8 @@
-$host = https://cst336-ndrinovsky.c9users.io/phpmyadmin/;
-$port = 3306;
-$dbname = flower_shop;
-$username = "web_user";
-$password = "";
-$dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
-$dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+To import sql DB:
+1) download the "flower_shop.sql" file to your computer
+2) go to your phpmyadmin page
+3) at your phpmyadmin home page click on the import page
+4) click on choose file and select the sql file
 
-loginInfo
-username: admin
-pass: adminPass
+this should import the database for your own c9 instance
+please note that the DB must be named "flower_shop" to have consistency across all workspaces

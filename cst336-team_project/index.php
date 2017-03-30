@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <!---- php 
     require_once('connection.php');
     session_start();
 ?> ---->
 
+=======
+>>>>>>> 29e2353281709e560da1ce8a2399f2ebb7543481
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,9 +21,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/heroic-features.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
-    <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
 
 </head>
 
@@ -74,14 +80,46 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Latest Features</h3>
+                <h3>Products</h3>
             </div>
         </div>
         <!-- /.row -->
 
         <!-- Page Features -->
+        <div id="searchform">
+            <h3>Search</h3>
+            <form>
+                Sort by:<br>
+                Name <input type="radio" name="sortBy" value="name"checked> or 
+                Price <input type="radio" name="sortBy" value="price" ><br>
+                Ascending <input type="radio" name="ascDes" value="asc" checked> or
+                Desending <input type="radio" name="ascDes" value="des"><br>
+            
+
+                Pricing
+                <input type="number" name="maxprice" min="0" max="100" value="100">
+                
+                <br>
+                Flowers 
+                <input  type="checkbox" class="formCheckbox" name="flowers">
+                <br>
+                Bouquets
+                <input  type="checkbox" class="formCheckbox" name="bouquets">
+                <br>
+                Plants
+                <input  type="checkbox" class="formCheckbox" name="plants">
+                <br>
+                Other Products
+                <input  type="checkbox" class="formCheckbox" name="other"><br>
+                Search: 
+                <input type="text" name="searchString">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+
         <div class="row text-center">
-
+        <?=populateList()?>
+        <!--
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="http://placehold.it/800x500" alt="">
@@ -94,46 +132,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="forget_me_not.jpg" alt="">
-                    <div class="caption">
-                        <h3>Forget Me Not</h3>
-                        <p>Growing a pot of these beautiful blue flowers will leave you remembering them forever.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
+         -->
         </div>
         <!-- /.row -->
 
@@ -160,3 +159,103 @@
 </body>
 
 </html>
+
+<?php 
+
+    function populateList()
+    {
+        require_once('database.php');
+        session_start();
+        $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
+        $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "SELECT * FROM product";
+        if ($_GET['maxprice'] != NULL)
+        {
+            $sql = $sql . " WHERE price <= " . $_GET['maxprice'];
+        }
+        else {
+            $sql = $sql . " WHERE price >= 0";
+        }
+        
+        if (isset($_GET['flowers']))
+        {
+            $sql = $sql . " AND productTypeId = '0'";
+            if (isset($_GET['bouquets']))
+            {
+                $sql = $sql . " OR productTypeId = '1'";
+            }
+            if (isset($_GET['plants']))
+            {
+                $sql = $sql . " OR productTypeId = '2'";
+            }
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['bouquets']))
+        {
+            $sql = $sql . " AND productTypeId = '1'";
+            if (isset($_GET['plants']))
+            {
+                $sql = $sql . " OR productTypeId = '2'";
+            }
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['plants']))
+        {
+            $sql = $sql . " AND productTypeId = '2'";
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['other']))
+        {
+            $sql = $sql . " AND productTypeId = '3'";
+        }
+
+        if ($_GET['searchString'] != "")
+        {
+            $sql = $sql ." AND name LIKE '%". $_GET['searchString'] ."%'";
+        }
+        
+        if ($_GET['sortBy'] == 'price')
+        {
+            $sql = $sql . " ORDER BY  price";
+        }
+        else {
+
+            $sql = $sql . " ORDER BY  name";
+        }
+        if ($_GET['ascDes'] == 'des')
+        {
+            $sql = $sql . " DESC";
+        }
+        else {
+            $sql = $sql . " ASC";
+        }
+        
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute();
+        
+        while ($row = $stmt->fetch()) {
+            echo '<div class="col-md-3 col-sm-6 hero-feature">';
+                echo '<div class="thumbnail">';
+                echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
+                    echo '<div class="caption">';
+                        echo '<h3>'. $row["name"]. '</h3>';
+                        echo '<p>'.$row["description"].'</p>
+                        <p>
+                        <a href="#" class="btn btn-primary" >$' .number_format((float) $row["price"], 2, '.', '') . '</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>';
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
+        }
+    }
+?>
