@@ -2,5 +2,14 @@
 #searchform {
     align-content: center;
     text-align: center;
-    font-size: 26px;
+    font-size:20px;
+    background-color: #337ab7;
+    padding-bottom: 20px;
+    border: 1px solid black;
+    margin-bottom: 25px;
+}
+
+
+.caption p{
+    font-size:12px;
 }
