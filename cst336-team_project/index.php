@@ -1,34 +1,3 @@
-<?php 
-
-    function populateList()
-    {
-        require_once('database.php');
-        session_start();
-        $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
-        $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $sql = "SELECT * FROM product";
-        
-        $stmt = $dbConn->prepare($sql);
-        $stmt->execute();
-        
-        while ($row = $stmt->fetch()) {
-            echo '<div class="col-md-3 col-sm-6 hero-feature">';
-                echo '<div class="thumbnail">';
-                echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
-                    echo '<div class="caption">';
-                        echo '<h3>'. $row["name"]. '</h3>';
-                        echo '<p>'.$row["description"].'</p>
-                        <p>
-                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>';
-                    echo '</div>';
-                echo '</div>';
-            echo '</div>';
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,8 +79,8 @@
             <h3>Limit Search</h3>
             <form>
                 Sort by:
-                Price <input type="radio" name="sortBy" value="price" checked>
-                Name <input type="radio" name="sortBy" value="name">
+                Name <input type="radio" name="sortBy" value="name"checked>
+                Price <input type="radio" name="sortBy" value="price" ><br>
                 Ascending <input type="radio" name="ascDes" value="asc" checked> 
                 Desending <input type="radio" name="ascDes" value="des"><br>
                 Max Price 
@@ -211,3 +180,103 @@
 </body>
 
 </html>
+
+<?php 
+
+    function populateList()
+    {
+        require_once('database.php');
+        session_start();
+        $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
+        $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "SELECT * FROM product";
+        if ($_GET['maxprice'] != NULL)
+        {
+            $sql = $sql . " WHERE price <= " . $_GET['maxprice'];
+        }
+        else {
+            $sql = $sql . " WHERE price >= 0";
+        }
+        
+        if (isset($_GET['flowers']))
+        {
+            $sql = $sql . " AND productTypeId = '0'";
+            if (isset($_GET['bouquets']))
+            {
+                $sql = $sql . " OR productTypeId = '1'";
+            }
+            if (isset($_GET['plants']))
+            {
+                $sql = $sql . " OR productTypeId = '2'";
+            }
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['bouquets']))
+        {
+            $sql = $sql . " AND productTypeId = '1'";
+            if (isset($_GET['plants']))
+            {
+                $sql = $sql . " OR productTypeId = '2'";
+            }
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['plants']))
+        {
+            $sql = $sql . " AND productTypeId = '2'";
+            if (isset($_GET['other']))
+            {
+                $sql = $sql . " OR productTypeId = '3'";
+            }
+        }
+        else if (isset($_GET['other']))
+        {
+            $sql = $sql . " AND productTypeId = '3'";
+        }
+
+        if ($_GET['searchString'] != "")
+        {
+            $sql = $sql ." AND name LIKE '%". $_GET['searchString'] ."%'";
+        }
+        
+        if ($_GET['sortBy'] == 'price')
+        {
+            $sql = $sql . " ORDER BY  price";
+        }
+        else {
+
+            $sql = $sql . " ORDER BY  name";
+        }
+        if ($_GET['ascDes'] == 'des')
+        {
+            $sql = $sql . " DESC";
+        }
+        else {
+            $sql = $sql . " ASC";
+        }
+        
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute();
+        
+        while ($row = $stmt->fetch()) {
+            echo '<div class="col-md-3 col-sm-6 hero-feature">';
+                echo '<div class="thumbnail">';
+                echo '<img style="height:200px" src="product_img/'. $row["image"] .'" alt="">';
+                    echo '<div class="caption">';
+                        echo '<h3>'. $row["name"]. '</h3>';
+                        echo '<p>'.$row["description"].'</p>
+                        <p>
+                        <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        </p>';
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
+        }
+    }
+?>
