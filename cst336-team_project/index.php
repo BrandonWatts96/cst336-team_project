@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<!---- php 
-    require_once('connection.php');
-    session_start();
-?> ---->
-
-=======
->>>>>>> 29e2353281709e560da1ce8a2399f2ebb7543481
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,8 +63,6 @@
         <header class="jumbotron hero-spacer">
             <h1>Flower Shop</h1>
             <p>Welcome to the CSUMB Flower Shop created and run by students for students.</p>
-            <p><a class="btn btn-primary btn-large">Check it out!</a>
-            </p>
         </header>
 
         <hr>
@@ -80,13 +70,13 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Products</h3>
+                <center><h1>Our Products</h1></center>
             </div>
         </div>
         <!-- /.row -->
 
         <!-- Page Features -->
-        <div id="searchform">
+      <center><div id="searchform">
             <h3>Search</h3>
             <form>
                 Sort by:<br>
@@ -116,6 +106,7 @@
                 <input type="submit" value="Search">
             </form>
         </div>
+        </center> 
 
         <div class="row text-center">
         <?=populateList()?>
