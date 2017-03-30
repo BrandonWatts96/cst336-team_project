@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 11:24 PM
+-- Generation Time: Mar 30, 2017 at 12:43 AM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.20
 
@@ -81,10 +81,10 @@ CREATE TABLE IF NOT EXISTS `product` (
 INSERT INTO `product` (`productId`, `name`, `description`, `price`, `productTypeId`, `image`) VALUES
 (0, 'Tulips', 'Spring blooming perennials', 1.5, 0, 'tulips.jpg'),
 (1, 'Sunflowers', 'Flowers shaped like a sun. Go figure.', 2, 0, 'sunflower.jpg'),
-(2, 'Orchids', 'Your mother''s favorite flower.', 15, 0, 'Orchids.jpg'),
-(3, 'Red Roses', 'Roses, but red. Always a classic "I''m sorry I forgot your birthday" gift!', 5, 0, 'roses_red.jpg'),
-(4, 'Yellow Roses', 'Now in yellow!', 5, 0, 'roses_yellow.jpg'),
-(5, 'Pink Roses', 'When you dont like all the red in your roses.', 5, 0, 'roses_pink.jpg'),
+(2, 'Orchids', 'Your mother''s favorite flower.', 15, 0, 'orchids.jpg'),
+(3, 'Red Roses', 'Roses, but red. Always a classic "I''m sorry I forgot your birthday" gift!', 5, 0, 'rose_red.jpg'),
+(4, 'Yellow Roses', 'Now in yellow!', 5, 0, 'rose_yellow.jpg'),
+(5, 'Pink Roses', 'When you dont like all the red in your roses.', 5, 0, 'rose_pink.jpg'),
 (6, 'Lillies', 'A name and also a flower!', 1.5, 0, 'lillies.jpg'),
 (7, 'Chrysanthemums', 'Also know as mums. For your mum.', 3, 0, 'chrysanthemums.jpg'),
 (8, 'Poppies', 'Great on bagels.', 4, 0, 'poppies.jpg'),
@@ -96,7 +96,7 @@ INSERT INTO `product` (`productId`, `name`, `description`, `price`, `productType
 (14, 'Forget Me Not', 'I forgot what these are.', 10, 0, 'forget.jpg'),
 (15, 'Baby''s Breath', 'Smells like applesauce and vomit.', 8.5, 0, 'baby.jpg'),
 (16, 'Hyacinth', 'Small nice smelling flowers.', 10, 0, 'hyacinth.jpg'),
-(17, 'Plumerias', 'A tropical flower. To remind you how much you want to be on vacation.', 15, 0, 'plumerias.jpg'),
+(17, 'Plumerias', 'A tropical flower. To remind you how much you want to be on vacation.', 15, 0, 'plumeria.jpg'),
 (100, 'Rose Bouquet', 'Bouquet of varying color of roses', 30, 1, 'rose_bouquet.jpg'),
 (101, 'Tulip Bouquet', 'Bouquet of varying color of tulips', 25, 1, 'tulip_bouquet.jpg'),
 (102, 'Lily Bouquet', 'Bouquet of lillies', 20, 1, 'lily_bouquet.jpg'),

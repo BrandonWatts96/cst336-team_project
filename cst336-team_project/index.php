@@ -1,13 +1,32 @@
 <?php 
+
+    function populateList()
+    {
     require_once('database.php');
     session_start();
     $dbConn = new PDO("mysql:host=$host; dbname=$dbname; port=$port", $username, $password);
     $dbConn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT * FROM products";
+    
+    $sql = "SELECT * FROM product";
     
     $stmt = $dbConn->prepare($sql);
     $stmt->execute();
     
+    while ($row = $stmt->fetch()) {
+        echo '<div class="col-md-3 col-sm-6 hero-feature">';
+            echo '<div class="thumbnail">';
+            echo '<img src="product_img/'. $row["image"] .'" alt="">';
+                echo '<div class="caption">';
+                    echo '<h3>'. $row["name"]. '</h3>';
+                    echo '<p>'.$row["description"].'</p>
+                    <p>
+                    <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                    </p>';
+                echo '</div>';
+            echo '</div>';
+        echo '</div>';
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -87,8 +106,11 @@
         <!-- /.row -->
 
         <!-- Page Features -->
-        <div class="row text-center">
+        
 
+        <div class="row text-center">
+        <?=populateList()?>
+        <!--
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="http://placehold.it/800x500" alt="">
@@ -140,7 +162,7 @@
                     </div>
                 </div>
             </div>
-
+         -->
         </div>
         <!-- /.row -->
 
